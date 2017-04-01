@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="multiStateView">
+
+        <attr name="errorView" format="reference" />
+        <attr name="loadingView" format="reference" />
+        <attr name="successView" format="reference" />
+        <attr name="unknownView" format="reference" />
+        <attr name="viewState" format="enum">
+
+            <enum name="loading" value="0" />
+            <enum name="error" value="1" />
+            <enum name="success" value="2" />
+            <enum name="unknown" value="3" />
+
+        </attr>
+
+    </declare-styleable>
+    <declare-styleable name="MultiStateRefreshLayout">
+        <!-- indicate that whether to use RecyclerView as the list in the layout, if you set this to 'true',then the attribute 'listView' will be invalid -->
+        <attr name="useRecyclerView" format="boolean" />
+
+        <attr name="listView" format="reference" />
+        <attr name="recyclerView" format="reference" />
+
+        <!-- the empty state when the list has no data -->
+        <attr name="emptyView" format="reference" />
+        <!-- the error state when getting wrong data from net or local -->
+        <attr name="requestErrorView" format="reference" />
+
+        <!-- the foot view's state -->
+        <attr name="footLoadingView" format="reference" />
+        <attr name="footErrorView" format="reference" />
+        <attr name="footSuccessView" format="reference" />
+        <attr name="footUnknownView" format="reference" />
+    </declare-styleable>
+</resources>
