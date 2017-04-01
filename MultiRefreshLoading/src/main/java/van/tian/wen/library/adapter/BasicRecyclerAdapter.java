@@ -13,7 +13,7 @@ public abstract class BasicRecyclerAdapter<E> extends RecyclerView.Adapter<BaseR
 
     protected Context mContext;
     protected List<E> mLists;
-    private OnItemClickListener onItemClickListener;
+
     public boolean hasSelect = false;
     private View mHeaderView;
     private View mFootView;
@@ -22,6 +22,9 @@ public abstract class BasicRecyclerAdapter<E> extends RecyclerView.Adapter<BaseR
     public static final int VIEW_TYPE_NORMAL = 0;
     public static final int VIEW_TYPE_HEADER = 1;
     public static final int VIEW_TYPE_FOOTER = 2;
+
+    private OnItemClickListener onItemClickListener;
+    private OnItemLongClickListener onItemLongClickListener;
 
     public BasicRecyclerAdapter(Context context) {
         this.mContext = context;
@@ -115,9 +118,24 @@ public abstract class BasicRecyclerAdapter<E> extends RecyclerView.Adapter<BaseR
             holder.getItemView().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickListener.onClicked(v, finalRealPosition);
+                    if (onItemClickListener != null) {
+                        onItemClickListener.onItemClicked(v, finalRealPosition);
+                    }
                 }
             });
+
+            holder.getItemView().setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if (onItemLongClickListener != null) {
+                        onItemLongClickListener.onItemLongClicked(v, finalRealPosition);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+
         }
 
         bindView(holder, position);
@@ -127,6 +145,10 @@ public abstract class BasicRecyclerAdapter<E> extends RecyclerView.Adapter<BaseR
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        this.onItemLongClickListener = onItemLongClickListener;
     }
 
     protected abstract int provideLayoutRes();
@@ -196,7 +218,11 @@ public abstract class BasicRecyclerAdapter<E> extends RecyclerView.Adapter<BaseR
     }
 
     public interface OnItemClickListener {
-        void onClicked(View view, int position);
+        void onItemClicked(View view, int position);
+    }
+
+    public interface OnItemLongClickListener {
+        void onItemLongClicked(View view, int position);
     }
 
 }

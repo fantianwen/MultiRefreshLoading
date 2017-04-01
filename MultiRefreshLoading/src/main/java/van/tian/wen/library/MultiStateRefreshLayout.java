@@ -407,7 +407,7 @@ public class MultiStateRefreshLayout extends SwipeRefreshLayout {
                             itemThreadHold = 0;
                         }
                     }
-                    if (lastVisibleItem + itemThreadHold + 1 >= totalItemCount) {
+                    if (lastVisibleItem + itemThreadHold >= totalItemCount) {
                         return true;
                     }
                 }

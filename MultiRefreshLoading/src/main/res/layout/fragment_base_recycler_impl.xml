@@ -10,13 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         dooioo:emptyView="@layout/view_default_empty"
-        dooioo:footErrorView="@layout/ljk_item_error_view"
-        dooioo:footLoadingView="@layout/ljk_item_loading_view"
-        dooioo:footSuccessView="@layout/ljk_item_success_view"
-        dooioo:footUnknownView="@layout/ljk_item_no_more_view"
-        dooioo:listView="@layout/list_view_marketing_open_valid_house"
+        dooioo:footErrorView="@layout/default_item_error_view"
+        dooioo:footLoadingView="@layout/view_default_loading"
+        dooioo:footSuccessView="@layout/view_defualt_success"
+        dooioo:footUnknownView="@layout/view_default_no_more"
+        dooioo:listView="@layout/default_list_view"
         dooioo:recyclerView="@layout/base_recycler_view_layout_id"
-        dooioo:requestErrorView="@layout/error_view_market_open"
+        dooioo:requestErrorView="@layout/view_default_error"
         dooioo:useRecyclerView="true">
 
     </van.tian.wen.library.MultiStateRefreshLayout>

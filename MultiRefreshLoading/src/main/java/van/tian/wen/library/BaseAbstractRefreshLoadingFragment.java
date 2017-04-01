@@ -24,7 +24,14 @@ import van.tian.wen.library.adapter.BasicRecyclerAdapter;
 import van.tian.wen.library.model.Pageable;
 import van.tian.wen.library.util.NetWorkUtil;
 
-public abstract class BaseAbstractRefreshLoadingFragment<Pagination extends Pageable, T> extends Fragment implements SwipeRefreshLayout.OnRefreshListener, MultiStateRefreshLayout.OnLoadingListener, View.OnClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+public abstract class BaseAbstractRefreshLoadingFragment<Pagination extends Pageable, T> extends Fragment implements
+        SwipeRefreshLayout.OnRefreshListener,
+        MultiStateRefreshLayout.OnLoadingListener,
+        View.OnClickListener,
+        AdapterView.OnItemClickListener,
+        AdapterView.OnItemLongClickListener,
+        BasicRecyclerAdapter.OnItemClickListener,
+        BasicRecyclerAdapter.OnItemLongClickListener {
 
     protected Context mContext;
 
@@ -90,6 +97,12 @@ public abstract class BaseAbstractRefreshLoadingFragment<Pagination extends Page
 
     private BasicRecyclerAdapter recyclerViewAdapter() {
         mRecyclerViewAdapter = setRecyclerViewAdapter();
+
+        if (mRecyclerViewAdapter != null) {
+            mRecyclerViewAdapter.setOnItemClickListener(this);
+            mRecyclerViewAdapter.setOnItemLongClickListener(this);
+        }
+
         mRecyclerViewAdapter.setList(mList, true);
         return mRecyclerViewAdapter;
     }
@@ -381,4 +394,15 @@ public abstract class BaseAbstractRefreshLoadingFragment<Pagination extends Page
 
     }
 
+    // recyclerview's adapter
+    @Override
+    public void onItemClicked(View view, int position) {
+
+    }
+
+    // recyclerview's adapter
+    @Override
+    public void onItemLongClicked(View view, int position) {
+
+    }
 }

@@ -34,4 +34,19 @@ public abstract class BaseRecyclerRefreshingLoadingFragment<Pagination extends P
     }
 
     protected abstract BasicRecyclerAdapter<T> setRecyclerAdapter();
+
+    @Override
+    public void onItemClicked(View view, int position) {
+        onRecyclerItemClicked(view, position);
+    }
+
+    @Override
+    public void onItemLongClicked(View view, int position) {
+        onRecyclerItemLongClicked(view, position);
+    }
+
+    protected abstract void onRecyclerItemClicked(View view, int position);
+
+    protected abstract void onRecyclerItemLongClicked(View view, int position);
+
 }

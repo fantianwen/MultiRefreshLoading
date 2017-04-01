@@ -2,10 +2,11 @@ package van.tian.wen.library;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import van.tian.wen.library.model.Pageable;
 
-public class BaseListRefreshLoadingFragment<Pagination extends Pageable, T> extends BaseAbstractRefreshLoadingFragment<Pagination, T> {
+public abstract class BaseListRefreshLoadingFragment<Pagination extends Pageable, T> extends BaseAbstractRefreshLoadingFragment<Pagination, T> {
 
     @Override
     protected int provideLayoutResId() {
@@ -26,4 +27,20 @@ public class BaseListRefreshLoadingFragment<Pagination extends Pageable, T> exte
     protected View getAdapterView(int position, View convertView, ViewGroup parent) {
         return null;
     }
+
+
+    @Override
+    protected void onItemClicked(AdapterView<?> parent, View view, int position, long id) {
+        onListItemClicked(parent, view, position, id);
+    }
+
+    @Override
+    protected void onItemLongClicked(AdapterView<?> parent, View view, int position, long id) {
+        onListItemLongClicked(parent, view, position, id);
+    }
+
+    protected abstract void onListItemClicked(AdapterView<?> parent, View view, int position, long id);
+
+    protected abstract void onListItemLongClicked(AdapterView<?> parent, View view, int position, long id);
+
 }

@@ -1,5 +1,9 @@
 package van.tian.wen.multirefreshloading;
 
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Toast;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,8 +24,28 @@ public class RecyclerViewFragment extends BaseRecyclerRefreshingLoadingFragment<
         Call<Pagnation<MemberBlog>> memberBlogs = RetrofitClient.service(API.class).getMemberBlogs("akimotomanatsu", 20);
         memberBlogs.enqueue(new Callback<Pagnation<MemberBlog>>() {
             @Override
-            public void onResponse(Call<Pagnation<MemberBlog>> call, Response<Pagnation<MemberBlog>> response) {
-                onRequestResult(response.body());
+            public void onResponse(Call<Pagnation<MemberBlog>> call, final Response<Pagnation<MemberBlog>> response) {
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        ((MainActivity)mContext).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                onRequestResult(response.body());
+                            }
+                        });
+
+                    }
+                }).start();
+
+
             }
 
             @Override
@@ -39,4 +63,15 @@ public class RecyclerViewFragment extends BaseRecyclerRefreshingLoadingFragment<
         }
         return mMemberBlogAdapter;
     }
+
+    @Override
+    protected void onRecyclerItemClicked(View view, int position) {
+        Toast.makeText(mContext, "clicked\n" + mMemberBlogAdapter.getItem(position).getTitle(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onRecyclerItemLongClicked(View view, int position) {
+        Toast.makeText(mContext, "long clicked\n" + mMemberBlogAdapter.getItem(position).getTitle(), Toast.LENGTH_SHORT).show();
+    }
+
 }
