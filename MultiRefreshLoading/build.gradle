@@ -45,7 +45,7 @@ ext {
     siteUrl = 'https://github.com/fantianwen/MultiRefreshLoading'
     gitUrl = 'https://github.com/fantianwen/MultiRefreshLoading.git'
 
-    libraryVersion = '0.0.6'
+    libraryVersion = '0.1.0'
 
     developerId = 'fantianwen'
     developerName = 'fantianwen'
