@@ -1,7 +1,6 @@
 package van.tian.wen.multirefreshloading;
 
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -29,22 +28,9 @@ public class RecyclerViewFragment extends BaseRecyclerRefreshingLoadingFragment<
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        try {
-                            Thread.sleep(2);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-
-                        ((MainActivity)mContext).runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                onRequestResult(response.body());
-                            }
-                        });
-
+                        onRequestResult(response.body());
                     }
                 }).start();
-
 
             }
 

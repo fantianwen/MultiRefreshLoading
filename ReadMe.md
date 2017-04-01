@@ -2,7 +2,7 @@
 
 This is an android UI displayed by Pagable data from net impleting by fragment.
 
-![MultiRefreshLoading](http://olel07toq.bkt.clouddn.com/multiRefreshLoading-compressed.gif)
+![MultiRefreshLoading](http://olel07toq.bkt.clouddn.com/multi-refresh-loading.gif)
 
 ## Basic usage
 
