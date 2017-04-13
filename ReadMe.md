@@ -10,7 +10,7 @@ This is an android UI displayed by Pagable data from net impleting by fragment.
 > gradle
 
 ```
-compile 'radasm.van:MultiRefreshLoading:0.1.0'
+compile 'radasm.van:MultiRefreshLoading:0.2.0'
 ```
 
 
