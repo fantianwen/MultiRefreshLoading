@@ -335,7 +335,17 @@ public class MultiStateRefreshLayout extends SwipeRefreshLayout {
             if (isRefreshing()) {
                 setRefreshing(false);
             }
-            showLoadingFoot();
+
+            if (useRecyclerView()) {
+                if (mRecyclerView.getAdapter().getItemCount() > 1) {
+                    showLoadingFoot();
+                }
+            } else {
+                if (mListView.getAdapter().getCount() > 0) {
+                    showLoadingFoot();
+                }
+            }
+
             mOnLoadingListener.onLoadMore();
             isLoading = false;
         } else {
@@ -461,7 +471,11 @@ public class MultiStateRefreshLayout extends SwipeRefreshLayout {
     }
 
     public void showErrorMsg() {
-        this.mListView.setVisibility(View.INVISIBLE);
+        if (useRecyclerView()) {
+            this.mRecyclerView.setVisibility(View.INVISIBLE);
+        } else {
+            this.mListView.setVisibility(View.INVISIBLE);
+        }
         this.mScrollView.setVisibility(View.VISIBLE);
         this.mEmptyView.setVisibility(View.GONE);
         this.mRequestErrorView.setVisibility(View.VISIBLE);
@@ -485,19 +499,33 @@ public class MultiStateRefreshLayout extends SwipeRefreshLayout {
         return mFootView;
     }
 
+    public void setInitialFootInVisiable() {
+        if (mFootView != null) {
+            mFootView.setVisibility(View.GONE);
+        }
+    }
+
     public interface OnLoadingListener {
         void onLoadMore();
     }
 
     public void showEmptyView() {
-        this.mListView.setVisibility(View.INVISIBLE);
+        if (useRecyclerView()) {
+            this.mRecyclerView.setVisibility(View.INVISIBLE);
+        } else {
+            this.mListView.setVisibility(View.INVISIBLE);
+        }
         this.mScrollView.setVisibility(View.VISIBLE);
         this.mEmptyView.setVisibility(View.VISIBLE);
         this.mRequestErrorView.setVisibility(View.GONE);
     }
 
     public void showNormalView() {
-        this.mListView.setVisibility(View.VISIBLE);
+        if (useRecyclerView()) {
+            this.mRecyclerView.setVisibility(View.VISIBLE);
+        } else {
+            this.mListView.setVisibility(View.VISIBLE);
+        }
         this.mScrollView.setVisibility(View.GONE);
     }
 

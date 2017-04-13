@@ -25,12 +25,12 @@ public class RecyclerViewFragment extends BaseRecyclerRefreshingLoadingFragment<
             @Override
             public void onResponse(Call<Pagnation<MemberBlog>> call, final Response<Pagnation<MemberBlog>> response) {
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
                         onRequestResult(response.body());
-                    }
-                }).start();
+//                    }
+//                }).start();
 
             }
 

@@ -6,6 +6,7 @@ import android.widget.AdapterView;
 
 import van.tian.wen.library.model.Pageable;
 
+
 public abstract class BaseListRefreshLoadingFragment<Pagination extends Pageable, T> extends BaseAbstractRefreshLoadingFragment<Pagination, T> {
 
     @Override

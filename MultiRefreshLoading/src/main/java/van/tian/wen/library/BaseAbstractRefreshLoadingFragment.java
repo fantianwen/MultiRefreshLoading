@@ -19,6 +19,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import van.tian.wen.library.MultiStateRefreshLayout;
 import van.tian.wen.library.adapter.BasicAdapter;
 import van.tian.wen.library.adapter.BasicRecyclerAdapter;
 import van.tian.wen.library.model.Pageable;
@@ -93,6 +94,11 @@ public abstract class BaseAbstractRefreshLoadingFragment<Pagination extends Page
         } else {
             mListView.setAdapter(listViewAdapter());
         }
+        setFootLoading();
+    }
+
+    private void setFootLoading() {
+        mRefreshLayout.showLoadingFoot();
     }
 
     private BasicRecyclerAdapter recyclerViewAdapter() {
@@ -134,10 +140,9 @@ public abstract class BaseAbstractRefreshLoadingFragment<Pagination extends Page
         super.onResume();
 
         request();
-
     }
 
-    private void request() {
+    protected void request() {
         setRefreshing(true);
         checkNetWork();
 

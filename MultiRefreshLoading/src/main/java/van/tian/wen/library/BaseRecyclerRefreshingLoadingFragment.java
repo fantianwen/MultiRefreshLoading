@@ -7,6 +7,7 @@ import van.tian.wen.library.adapter.BasicRecyclerAdapter;
 import van.tian.wen.library.model.Pageable;
 
 public abstract class BaseRecyclerRefreshingLoadingFragment<Pagination extends Pageable, T> extends BaseAbstractRefreshLoadingFragment<Pagination, T> {
+
     @Override
     protected int provideLayoutResId() {
         return R.layout.fragment_base_recycler_impl;
